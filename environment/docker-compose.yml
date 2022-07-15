@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  postgres:
+    image: postgres:14.4
+    container_name: currencies-postgres
+    networks:
+      - currencies
+    environment:
+      POSTGRES_DB: currencies_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1
+    ports:
+      - "5432:5432"
+
+networks:
+  currencies:
+    driver: bridge

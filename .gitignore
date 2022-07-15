@@ -1,0 +1,20 @@
+.idea/
+*.iml
+.gradle/
+classes
+build/
+node_modules/
+npm-debug.log
+
+detekt-reports/
+
+# VIM swap files
+*.swp
+
+# Python-related
+lib
+bin
+include
+.Python
+pip-selfcheck.json
+

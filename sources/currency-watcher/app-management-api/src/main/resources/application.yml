@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/currencies_db
+    username: postgres
+    password: 1
+    driverClassName: org.postgresql.Driver
+  jpa:
+    generate-ddl: false
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    locations: classpath:migration
+    sql-migration-prefix: V
+    baseline-on-migrate: true
+    enabled: true
+server:
+  servlet:
+    context-path: "/api"
+  port: 8090
