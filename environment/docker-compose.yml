@@ -1,11 +1,12 @@
 version: "3.3"
 
 services:
-  postgres:
+
+  postgresql:
     image: postgres:14.4
-    container_name: currencies-postgres
+    container_name: postgres
     networks:
-      - currencies
+      - currencies-network
     environment:
       POSTGRES_DB: currencies_db
       POSTGRES_USER: postgres
@@ -13,6 +14,33 @@ services:
     ports:
       - "5432:5432"
 
+  management_api:
+    depends_on:
+      - postgresql
+    container_name: management_api
+    restart: always
+    build: ../sources/currency-watcher/app-management-api/
+    environment:
+      POSTGRESQL_HOST: postgres
+    ports:
+      - 8090:8090
+    networks:
+      - currencies-network
+
+  database-update-tool:
+    depends_on:
+      - postgresql
+      - management_api
+    container_name: database_update_tool
+    restart: always
+    build: ../sources/currency-watcher/scheduled-database-update-tool/
+    environment:
+      POSTGRESQL_HOST: postgres
+    ports:
+      - 8080:8080
+    networks:
+      - currencies-network
+
 networks:
-  currencies:
+  currencies-network:
     driver: bridge

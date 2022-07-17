@@ -1,8 +1,6 @@
 package com.example.currencywatcher.management.cmn.exception;
 
-import com.example.currencywatcher.exception.CurrencyWatcherException;
-
-public abstract class ConflictException extends CurrencyWatcherException {
+public abstract class ConflictException extends ManagementApiException {
 
     public ConflictException(String message) {
         super(message, 409);

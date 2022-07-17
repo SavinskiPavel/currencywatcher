@@ -40,7 +40,7 @@ public class ClientDatabaseObserver implements DatabaseObserver {
         var percentPriceDifference = comparePrices(Double.valueOf(oldPrice), Double.valueOf(newPrice));
 
         if (percentPriceDifference > ACCEPTABLE_PERCENT) {
-            log.info("Currency code - {}. Username - {}. Price changed on {}%.",
+            log.warn("Currency code - {}. Username - {}. Price changed on {}%.",
                     cryptocurrencyFromDb.getSymbol(), clientEntity.getUsername(), percentPriceDifference);
         }
     }
