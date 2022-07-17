@@ -4,7 +4,7 @@ import com.example.currencywatcher.management.cmn.exception.ConflictException;
 
 public class UsernameIsNotUniqueException extends ConflictException {
 
-    public UsernameIsNotUniqueException(String message) {
-        super(message);
+    public UsernameIsNotUniqueException(String username) {
+        super("User " + username + " already exists");
     }
 }
